@@ -1,64 +1,28 @@
 <?php
-// data adalah bentuk  dari array
+// array data mahasiswa
 $data = [
-    ["D212111023", "Ajeng Aprilyani"],
-    ["D212111006", "Gita Septiani"],
-    ["D212111014", "Rizaldy Muhamad Sopyan"],
-    ["D212111021", "Triana Siti Aryani"],
-    ["D212111026", "Aura Maliya"],
-    ["D212111028", "Fanisa Tri Agna Fata"],
-    ["D212111025", "Aspiya Huwaida"],
-    ["D212111002", "Cahya Julianti"],
-    ["D212111004", "Desi Syifa Fitria"],
-    ["D212111030", "Muhammad Reza Andriansyah"]
+    [1, "D212111001", "Aliftia Radianti Taniasari"],
+    [2, "D212111002", "Cahya Julianti"],
+    [3, "D212111003", "Dasimah Seftiani"],
+    [4, "D212111004", "Desi Syifa Fitria"],
+    [5, "D212111005", "Dewi Yulianti"],
+    [6, "D212111006", "Gita Septiani"],
+    [7, "D212111007", "Ikhlas Wandana"],
+    [8, "D212111008", "Intan Khoirunnisa"],
+    [9, "D212111009", "Islah Nurhasanah"],
+    [10, "D212111010", "Kenia Nurazizah"],
 ];
 
-// menyusun baris tabel menggunakan perulangan foreach
-$rows = '';
-$no = 1;
-foreach ($data as $row) {
-    $rows .= "<tr>";
-    $rows .= "<td>{$no}</td>";
-    $rows .= "<td>{$row[0]}</td>";
-    $rows .= "<td>{$row[1]}</td>";
-    $rows .= "</tr>";
-    $no++;
-}
-?>
+// menampilkan tabel
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr><th>No</th><th>NIM</th><th>Nama</th></tr>";
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Data Mahasiswa</title>
-    <style>
-        table {
-            width: 400px auto;
-            border-collapse: collapse;
-            margin: 20px;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>NIM</th>
-                <th>Nama</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php echo $rows; ?>
-        </tbody>
-    </table>
-</body>
-</html>
+foreach ($data as $row) {
+    echo "<tr>
+            <td>{$row[0]}</td>
+            <td>{$row[1]}</td>
+            <td>{$row[2]}</td>
+          </tr>";
+}
+echo "</table>";
+?>
