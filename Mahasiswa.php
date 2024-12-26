@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
 $result = $mysqli->query("SELECT students.nim, students.nama, study_programs.name 
@@ -24,6 +27,17 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <div class="container mt-4">
         <h2 class="mb-3 text-center">Daftar Mahasiswa Politeknik TEDC Bandung</h2>
+        <?php
+        if (isset($_SESSION['success_message'])) {
+            echo "<div class='alert alert-success' role='alert'>{$_SESSION['success_message']}</div>";
+            unset($_SESSION['success_message']);
+        }
+
+        if (isset($_SESSION['error_message'])) {
+            echo "<div class='alert alert-danger' role='alert'>{$_SESSION['error_message']}</div>";
+            unset($_SESSION['error_message']);
+        }
+        ?>
         <a href="tambah.php" class="btn btn-success mb-3">Tambah Mahasiswa</a>
         <table class="table table-hover table-striped table-bordered">
             <thead class="table-dark">

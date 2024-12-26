@@ -1,5 +1,6 @@
 <?php
-// edit_mahasiswa.php
+
+session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
@@ -16,9 +17,11 @@ if (isset($_GET['nim'])) {
         $stmt->bind_param('sis', $nama, $program_studi, $nim);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Data berhasil diupdate!'); window.location.href='mahasiswa.php';</script>";
+            $_SESSION['success_message'] = 'Data berhasil diedit!';
+            header('Location: Mahasiswa.php');
+            exit();
         } else {
-            echo "<script>alert('Gagal mengupdate data: " . $stmt->error . "');</script>";
+            $_SESSION['error_message'] = 'Data tidak bisa diedit: ' . $stmt->error;
         }
 
         $stmt->close();

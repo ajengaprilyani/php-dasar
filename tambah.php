@@ -1,5 +1,6 @@
 <?php
-// tambah_mahasiswa.php
+
+session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
@@ -12,10 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('ssi', $nim, $nama, $program_studi);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Data berhasil ditambahkan!'); window.location.href='mahasiswa.php';</script>";
+        $_SESSION['success_message'] = 'Data berhasil ditambahkan!';
+        header('Location: Mahasiswa.php');
+        exit();
     } else {
-        echo "<script>alert('Gagal menambahkan data: " . $stmt->error . "');</script>";
+        $_SESSION['error_message'] = 'Data tidak bisa ditambahkan: ' . $stmt->error;
     }
+
 
     $stmt->exit();
 }
