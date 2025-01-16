@@ -2,6 +2,13 @@
 
 session_start();
 
+if (!isset($_SESSION['Login'])) {
+    if ($_SESSION['Login'] != true) {
+        header("Location: Login.php");
+        exit;
+    }
+}
+
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
 if (isset($_GET['nim'])) {

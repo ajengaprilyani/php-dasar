@@ -2,6 +2,13 @@
 
 session_start();
 
+if (!isset($_SESSION['Login'])) {
+    if ($_SESSION['Login'] != true) {
+        header("Location: Login.php");
+        exit;
+    }
+}
+
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,3 +76,7 @@ $study_programs = $mysqli->query("SELECT * FROM study_programs");
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+unset($_SESSION['success']);
+?>

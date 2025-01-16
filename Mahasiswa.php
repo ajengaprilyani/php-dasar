@@ -2,6 +2,13 @@
 
 session_start();
 
+if (!isset($_SESSION['Login'])) {
+    if ($_SESSION['Login'] != true) {
+        header("Location: Login.php");
+        exit;
+    }
+}
+
 $mysqli = new mysqli('localhost', 'root', '', 'tedc2');
 
 $result = $mysqli->query("SELECT students.nim, students.nama, study_programs.name 
@@ -73,3 +80,9 @@ while ($row = $result->fetch_assoc()) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+unset($_SESSION['success']);
+unset($_SESSION['message']);
+
+?>
